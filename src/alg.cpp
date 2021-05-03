@@ -16,21 +16,21 @@ int priority (char ch) {
       return 3;
     default:
       return -1;
-        
   }
 }
 
 std::string infx2pstfx(std::string inf) {
   TStack<char> stack1;
-  std::string outStr;
+  
+  std::string  outStr;
   
   for (int i = 0; i < inf.size(); i++) {
     if ('0' <= inf[i] && inf[i] <= '9') {
       outStr += inf[i];
-      if (inf[i + 1] < '0' || inf[i + 1] > '9')
+      if (inf[i+1] < '0' || inf[i+1] > '9')
         outStr += " ";
     } else {
-      if ((stack1.isEmpty() || priority(inf[i]) == 0 || priority(inf[i]) > priority(stack1.get())) && priority(inf[i]) != 1) 
+      if ((stack1.isEmpty() || priority(inf[i]) == 0 || priority(inf[i]) > priority(stack1.get())) && priority(inf[i]) != 1)
         stack1.push(inf[i]);
       else if (priority(inf[i]) != 1 && priority(inf[i]) <= priority(stack1.get())) {
         while (priority(inf[i]) <= priority(stack1.get()) && priority(stack1.get()) > 0) {
@@ -49,6 +49,7 @@ std::string infx2pstfx(std::string inf) {
       }
     }
   }
+  
   while (!stack1.isEmpty()) {
     outStr += stack1.get();
     outStr += " ";
@@ -59,11 +60,11 @@ std::string infx2pstfx(std::string inf) {
 }
 
 int calculate (char *op, int num1, int num2) {
-  switch(*op) {
+  switch (*op) {
     case '+':
       return num1 + num2;
     case '-':
-      return num1 - num2;
+      return num1-num2;
     case '*':
       return num1 * num2;
     case '/':
@@ -75,7 +76,7 @@ int eval(std::string pst) {
   TStack<int> stack2;
   for (int i = 0; i < pst.size(); i++) {
     if ('0' <= pst[i] && pst[i] <= '9')
-      stack2.push(pst[i] - '0');
+      stack2.push();
     else if (priority(pst[i]) == 2 || priority(pst[i]) == 3) {
       int num1 = stack2.get();
       stack2.pop();
