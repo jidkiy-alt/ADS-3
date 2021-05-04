@@ -71,7 +71,7 @@ int eval(std::string pst) {
   TStack<int> stack2;
   for (int i = 0; i < pst.size(); i++) {
     if ('0' <= pst[i] && pst[i] <= '9')
-      stack2.push();
+      stack2.push(pst[i] - '0');
     else if (priority(pst[i]) == 2 || priority(pst[i]) == 3) {
       int num1 = stack2.get();
       stack2.pop();
