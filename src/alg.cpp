@@ -28,10 +28,14 @@ std::string infx2pstfx(std::string inf) {
       if (inf[i+1] < '0' || inf[i+1] > '9')
         outStr += " ";
     } else {
-      if ((stack1.isEmpty() || priority(inf[i]) == 0 || priority(inf[i]) > priority(stack1.get())) && priority(inf[i]) != 1) {
+      if ((stack1.isEmpty() || priority(inf[i]) == 0 ||
+           priority(inf[i]) > priority(stack1.get())) &&
+          priority(inf[i]) != 1) {
         stack1.push(inf[i]);
-      } else if (priority(inf[i]) != 1 && priority(inf[i]) <= priority(stack1.get())) {
-        while (priority(inf[i]) <= priority(stack1.get()) && priority(stack1.get()) > 0) {
+      } else if (priority(inf[i]) != 1 &&
+                 priority(inf[i]) <= priority(stack1.get())) {
+        while (priority(inf[i]) <= priority(stack1.get()) &&
+               priority(stack1.get()) > 0) {
           outStr += stack1.get();
           outStr += " ";
           stack1.pop();
